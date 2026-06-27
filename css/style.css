@@ -186,7 +186,7 @@ ul { list-style: none; }
 }
 [data-theme="dark"] .logo { color: #f8fafc; }
 .logo:hover { color: var(--dark); opacity: .9; }
-.logo img { max-height: 40px; width: auto; display: block; }
+.logo img { height: 40px; width: auto; flex-shrink: 0; object-fit: contain; }
 .logo-icon {
   display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px;
