@@ -295,7 +295,7 @@
     el.convertBtn.disabled = selectedFiles.length === 0 || isConverting;
     if (el.themeToggle) el.themeToggle.title = document.documentElement.getAttribute('data-theme') === 'dark' ? t('light') : t('dark');
 
-    setText('heroTitle', t('heroTitle'));
+    setHtml('heroTitle', t('heroTitle'));
     setText('heroDesc', t('heroDesc'));
     setHtml('heroStat1', t('heroStat1'));
     setHtml('heroStat2', t('heroStat2'));
