@@ -188,32 +188,12 @@ ul { list-style: none; }
 [data-theme="dark"] .logo { color: #f8fafc; }
 .logo:hover { color: var(--dark); opacity: .9; }
 .logo-3d {
-  font-size: 1.5rem;
-  color: #fff;
-  text-shadow:
-    0 1px 0 #0ff,
-    0 2px 0 #0dd,
-    0 3px 0 #0bb,
-    0 4px 0 #099,
-    0 5px 0 #077,
-    0 6px 3px rgba(0,255,255,.25),
-    0 0 12px rgba(0,200,255,.3),
-    0 8px 8px rgba(0,0,0,.1);
-  background: linear-gradient(135deg, #00e5ff, #00ff88);
+  font-size: 1.35rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-[data-theme="dark"] .logo-3d {
-  text-shadow:
-    0 1px 0 #0ff,
-    0 2px 0 #0dd,
-    0 3px 0 #0bb,
-    0 4px 0 #099,
-    0 5px 0 #077,
-    0 6px 3px rgba(0,255,255,.35),
-    0 0 16px rgba(0,200,255,.4),
-    0 8px 8px rgba(0,0,0,.2);
 }
 .logo-icon {
   display: flex; align-items: center; justify-content: center;
