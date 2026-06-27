@@ -191,27 +191,29 @@ ul { list-style: none; }
   font-size: 1.5rem;
   color: #fff;
   text-shadow:
-    0 1px 0 #ccc,
-    0 2px 0 #bbb,
-    0 3px 0 #aaa,
-    0 4px 0 #999,
-    0 5px 0 #888,
-    0 6px 3px rgba(0,0,0,.2),
-    0 8px 8px rgba(0,0,0,.15);
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+    0 1px 0 #0ff,
+    0 2px 0 #0dd,
+    0 3px 0 #0bb,
+    0 4px 0 #099,
+    0 5px 0 #077,
+    0 6px 3px rgba(0,255,255,.25),
+    0 0 12px rgba(0,200,255,.3),
+    0 8px 8px rgba(0,0,0,.1);
+  background: linear-gradient(135deg, #00e5ff, #00ff88);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 [data-theme="dark"] .logo-3d {
   text-shadow:
-    0 1px 0 #334155,
-    0 2px 0 #2a3344,
-    0 3px 0 #222a33,
-    0 4px 0 #1a2222,
-    0 5px 0 #121a1a,
-    0 6px 3px rgba(0,0,0,.4),
-    0 8px 8px rgba(0,0,0,.3);
+    0 1px 0 #0ff,
+    0 2px 0 #0dd,
+    0 3px 0 #0bb,
+    0 4px 0 #099,
+    0 5px 0 #077,
+    0 6px 3px rgba(0,255,255,.35),
+    0 0 16px rgba(0,200,255,.4),
+    0 8px 8px rgba(0,0,0,.2);
 }
 .logo-icon {
   display: flex; align-items: center; justify-content: center;
