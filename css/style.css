@@ -187,7 +187,32 @@ ul { list-style: none; }
 }
 [data-theme="dark"] .logo { color: #f8fafc; }
 .logo:hover { color: var(--dark); opacity: .9; }
-.logo img { height: 40px; width: auto; display: inline-block; vertical-align: middle; }
+.logo-3d {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow:
+    0 1px 0 #ccc,
+    0 2px 0 #bbb,
+    0 3px 0 #aaa,
+    0 4px 0 #999,
+    0 5px 0 #888,
+    0 6px 3px rgba(0,0,0,.2),
+    0 8px 8px rgba(0,0,0,.15);
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+[data-theme="dark"] .logo-3d {
+  text-shadow:
+    0 1px 0 #334155,
+    0 2px 0 #2a3344,
+    0 3px 0 #222a33,
+    0 4px 0 #1a2222,
+    0 5px 0 #121a1a,
+    0 6px 3px rgba(0,0,0,.4),
+    0 8px 8px rgba(0,0,0,.3);
+}
 .logo-icon {
   display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px;
@@ -195,7 +220,6 @@ ul { list-style: none; }
   color: white; border-radius: 10px;
   font-size: 14px; font-weight: 800; letter-spacing: -0.5px;
 }
-.logo span:last-child { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
 .nav { display: flex; align-items: center; gap: 8px; }
 .nav-link {
