@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /en/
+Disallow: /js/
+Disallow: /css/
+
+Sitemap: https://www.pdftools.com/sitemap.xml
