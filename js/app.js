@@ -196,6 +196,7 @@
 
   // ===== PARTICLES =====
   function initParticles() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const canvas = document.getElementById('particles-canvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -448,6 +449,7 @@
       el.dropzone.addEventListener(evt, e => { e.preventDefault(); el.dropzone.classList.remove('dragover'); });
     });
     el.dropzone.addEventListener('drop', e => handleFiles(e.dataTransfer.files));
+    el.dropzone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.fileInput.click(); } });
   }
 
   function setupFileInput() {
@@ -515,11 +517,13 @@
   // ===== UI =====
   function setupHamburger() {
     el.hamburger.addEventListener('click', () => {
+      const isOpen = el.nav.classList.contains('open');
       el.hamburger.classList.toggle('active');
       el.nav.classList.toggle('open');
+      el.hamburger.setAttribute('aria-expanded', !isOpen);
     });
     document.querySelectorAll('.nav-link').forEach(l => {
-      l.addEventListener('click', () => { el.hamburger.classList.remove('active'); el.nav.classList.remove('open'); });
+      l.addEventListener('click', () => { el.hamburger.classList.remove('active'); el.nav.classList.remove('open'); el.hamburger.setAttribute('aria-expanded', 'false'); });
     });
   }
 
@@ -532,6 +536,7 @@
       const order = ['fr', 'en', 'es'];
       const idx = order.indexOf(currentLang);
       currentLang = order[(idx + 1) % order.length];
+      el.langToggle.setAttribute('aria-label', t('lang'));
       updateUI();
     });
   }
@@ -541,8 +546,14 @@
       q.addEventListener('click', () => {
         const item = q.closest('.faq-item');
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          q.setAttribute('aria-expanded', 'true');
+        }
       });
     });
   }

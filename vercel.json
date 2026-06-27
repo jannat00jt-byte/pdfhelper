@@ -3,12 +3,16 @@
   "builds": [
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "en/*.html", "use": "@vercel/static" },
+    { "src": "blog/**/*.html", "use": "@vercel/static" },
     { "src": "css/*", "use": "@vercel/static" },
     { "src": "js/*", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/en", "dest": "/en/index.html" },
     { "src": "/en/", "dest": "/en/index.html" },
+    { "src": "/blog", "dest": "/blog/index.html" },
+    { "src": "/blog/", "dest": "/blog/index.html" },
+    { "src": "/blog/(.*)/", "dest": "/blog/$1/index.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ],
   "headers": [
@@ -17,7 +21,8 @@
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
       ]
     },
     {
@@ -25,7 +30,12 @@
       "headers": [ { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" } ]
     },
     {
-      "source": "/(.*)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" } ]
+      "source": "/blog/(.*)",
+      "headers": [ { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" } ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [ { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" } ]
     }
   ]
 }

@@ -1,7 +1,9 @@
 User-agent: *
 Allow: /
+Allow: /blog/
 Allow: /en/
 Disallow: /js/
 Disallow: /css/
+Disallow: /img/
 
 Sitemap: https://www.pdftools.com/sitemap.xml
