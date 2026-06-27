@@ -1,5 +1,5 @@
 /* ============================================
-   PDF-Tools - Application Logic
+   PDFHelper Tool - Application Logic
    Dark Mode, Particles, i18n, Conversions
    ============================================ */
 
@@ -38,7 +38,7 @@
   // ===== i18n =====
   const i18n = {
     fr: {
-      siteName: 'PDF Tools', tagline: 'Convertissez et fusionnez vos documents PDF en ligne',
+      siteName: 'PDFHelper Tool', tagline: 'Convertissez et fusionnez vos documents PDF en ligne',
       seoTitle: 'Convertissez vos fichiers en PDF gratuitement',
       seoDesc: 'Convertissez et fusionnez vos PDF en ligne gratuitement. Outils : fusion PDF, JPG en PDF, PNG en PDF, TIFF en PDF, SVG en PDF. 100% sécurisé, sans inscription.',
       heroTitle: 'Convertissez vos fichiers en <span class="highlight">PDF</span>',
@@ -61,7 +61,7 @@
       step1Title: 'Sélectionnez un outil', step1Desc: 'Choisissez l\'outil adapté à votre besoin parmi nos 5 options.',
       step2Title: 'Ajoutez vos fichiers', step2Desc: 'Déposez vos fichiers ou cliquez pour les sélectionner.',
       step3Title: 'Convertissez & téléchargez', step3Desc: 'Obtenez votre PDF en quelques secondes, directement dans votre navigateur.',
-      featuresTitle: 'Pourquoi choisir <span class="highlight">PDF Tools</span>',
+      featuresTitle: 'Pourquoi choisir <span class="highlight">PDFHelper Tool</span>',
       feat1Title: '100% Gratuit', feat1Desc: 'Tous nos outils sont totalement gratuits, sans limite de fichiers ni d\'utilisation.',
       feat2Title: 'Sécurité maximale', feat2Desc: 'Vos fichiers sont traités localement dans votre navigateur. Rien n\'est envoyé sur nos serveurs.',
       feat3Title: 'Aucune inscription', feat3Desc: 'Pas besoin de créer un compte. Utilisez nos outils immédiatement.',
@@ -83,8 +83,8 @@
       lang: 'English', noFiles: 'Aucun fichier sélectionné', filesSelected: 'fichier(s) sélectionné(s)',
       errorTitle: 'Erreur de conversion', errorDesc: 'Une erreur est survenue lors de la conversion. Veuillez réessayer.',
       seoH2: 'Convertissez tous vos documents en PDF',
-      seoP1: 'PDF Tools est votre solution complète pour la conversion et la fusion de documents PDF. Que vous ayez besoin de fusionner plusieurs PDF en un seul fichier ou de convertir des images JPG, PNG, TIFF ou SVG en PDF, notre outil en ligne gratuit vous offre une solution rapide et fiable.',
-      seoP2: 'Contrairement à d\'autres services, PDF Tools traite tous vos fichiers directement dans votre navigateur. Cela signifie que vos documents restent confidentiels et ne sont jamais téléchargés sur un serveur externe.',
+      seoP1: 'PDFHelper Tool est votre solution complète pour la conversion et la fusion de documents PDF. Que vous ayez besoin de fusionner plusieurs PDF en un seul fichier ou de convertir des images JPG, PNG, TIFF ou SVG en PDF, notre outil en ligne gratuit vous offre une solution rapide et fiable.',
+      seoP2: 'Contrairement à d\'autres services, PDFHelper Tool traite tous vos fichiers directement dans votre navigateur. Cela signifie que vos documents restent confidentiels et ne sont jamais téléchargés sur un serveur externe.',
       seoH3: 'Fusion de PDF professionnelle',
       seoP3: 'Notre outil de fusion PDF vous permet de combiner plusieurs documents en un seul fichier PDF. Idéal pour regrouper des contrats, des rapports, des présentations ou tout autre document professionnel.',
       seoH4: 'Conversion d\'images en PDF de haute qualité',
@@ -92,7 +92,7 @@
       dark: 'Mode sombre', light: 'Mode clair'
     },
     en: {
-      siteName: 'PDF Tools', tagline: 'Convert and merge your PDF documents online',
+      siteName: 'PDFHelper Tool', tagline: 'Convert and merge your PDF documents online',
       seoTitle: 'Convert your files to PDF for free online',
       seoDesc: 'Convert and merge your PDFs online for free. Tools: merge PDF, JPG to PDF, PNG to PDF, TIFF to PDF, SVG to PDF. 100% secure, no signup.',
       heroTitle: 'Convert your files to <span class="highlight">PDF</span>',
@@ -110,7 +110,7 @@
       step1Title: 'Select a tool', step1Desc: 'Choose the right tool for your needs from our 5 options.',
       step2Title: 'Add your files', step2Desc: 'Drop your files or click to browse and select them.',
       step3Title: 'Convert & download', step3Desc: 'Get your PDF in seconds, right in your browser.',
-      featuresTitle: 'Why choose <span class="highlight">PDF Tools</span>',
+      featuresTitle: 'Why choose <span class="highlight">PDFHelper Tool</span>',
       feat1Title: '100% Free', feat1Desc: 'All our tools are completely free, no file or usage limits.',
       feat2Title: 'Maximum security', feat2Desc: 'Your files are processed locally in your browser. Nothing is sent to our servers.',
       feat3Title: 'No registration', feat3Desc: 'No account needed. Use our tools immediately with no signup.',
@@ -128,8 +128,8 @@
       lang: 'Français', noFiles: 'No files selected', filesSelected: 'file(s) selected',
       errorTitle: 'Conversion error', errorDesc: 'An error occurred during conversion. Please try again.',
       seoH2: 'Convert all your documents to PDF',
-      seoP1: 'PDF Tools is your complete solution for PDF conversion and merging. Whether you need to merge multiple PDFs into one file or convert JPG, PNG, TIFF or SVG images to PDF, our free online tool provides a fast and reliable solution.',
-      seoP2: 'Unlike other services, PDF Tools processes all your files directly in your browser. Your documents remain confidential and are never uploaded to an external server.',
+      seoP1: 'PDFHelper Tool is your complete solution for PDF conversion and merging. Whether you need to merge multiple PDFs into one file or convert JPG, PNG, TIFF or SVG images to PDF, our free online tool provides a fast and reliable solution.',
+      seoP2: 'Unlike other services, PDFHelper Tool processes all your files directly in your browser. Your documents remain confidential and are never uploaded to an external server.',
       seoH3: 'Professional PDF merging',
       seoP3: 'Our PDF merging tool lets you combine multiple documents into a single PDF file. Ideal for consolidating contracts, reports, presentations or any professional document.',
       seoH4: 'High-quality image to PDF conversion',
