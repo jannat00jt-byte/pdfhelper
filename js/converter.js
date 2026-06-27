@@ -1,8 +1,3 @@
-/* ============================================
-   PDF-Tools - Conversion Engine
-   Client-side PDF manipulation with pdf-lib
-   ============================================ */
-
 const PDFConverter = (() => {
   let pdfLib;
 
@@ -32,20 +27,44 @@ const PDFConverter = (() => {
     return await mergedPdf.save();
   }
 
-  async function imageToPDF(file) {
-    await init();
-    const pdfDoc = await pdfLib.PDFDocument.create();
-    let image;
-    if (file.type === 'image/png' || file.name.match(/\.png$/i)) {
-      image = await pdfDoc.embedPng(await file.arrayBuffer());
-    } else if (file.name.match(/\.svg$/i)) {
-      image = await pdfDoc.embedPng(await svgToPngBuffer(file));
-    } else {
-      image = await pdfDoc.embedJpg(await file.arrayBuffer());
+  function isImageType(file, exts) {
+    return exts.some(ext => file.name.toLowerCase().endsWith(ext));
+  }
+
+  async function fileToPngBuffer(file) {
+    if (isImageType(file, ['.tif', '.tiff'])) {
+      return await tiffToPngBuffer(file);
     }
-    const page = pdfDoc.addPage([image.width, image.height]);
-    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
-    return await pdfDoc.save();
+    if (isImageType(file, ['.svg'])) {
+      return await svgToPngBuffer(file);
+    }
+    return await imageFileToPngBuffer(file);
+  }
+
+  async function tiffToPngBuffer(file) {
+    if (typeof UTIF === 'undefined') {
+      throw new Error('TIFF decoder not loaded');
+    }
+    const buffer = await file.arrayBuffer();
+    const ifds = UTIF.decode(new Uint8Array(buffer));
+    if (!ifds || ifds.length === 0) throw new Error('Invalid TIFF file');
+    UTIF.decodeImage(new Uint8Array(buffer), ifds[0]);
+    const rgba = UTIF.toRGBA8(ifds[0]);
+    const w = ifds[0].width;
+    const h = ifds[0].height;
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.createImageData(w, h);
+    imageData.data.set(rgba);
+    ctx.putImageData(imageData, 0, 0);
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(b => {
+        if (b) resolve(b.arrayBuffer());
+        else reject(new Error('TIFF canvas conversion failed'));
+      }, 'image/png');
+    });
   }
 
   async function svgToPngBuffer(file) {
@@ -57,15 +76,14 @@ const PDFConverter = (() => {
       const blob = new Blob([text], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       img.onload = () => {
-        canvas.width = img.naturalWidth || 800;
-        canvas.height = img.naturalHeight || 600;
-        if (canvas.width === 0) canvas.width = 800;
-        if (canvas.height === 0) canvas.height = 600;
+        canvas.width = Math.max(img.naturalWidth, 1) || 800;
+        canvas.height = Math.max(img.naturalHeight, 1) || 600;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
         canvas.toBlob(b => {
           URL.revokeObjectURL(url);
-          b ? b.arrayBuffer().then(resolve).catch(reject) : reject(new Error('Canvas empty'));
+          if (b) resolve(b.arrayBuffer());
+          else reject(new Error('SVG canvas empty'));
         }, 'image/png');
       };
       img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('SVG load failed')); };
@@ -73,19 +91,46 @@ const PDFConverter = (() => {
     });
   }
 
+  async function imageFileToPngBuffer(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob(b => {
+            if (b) resolve(b.arrayBuffer());
+            else reject(new Error('Image canvas conversion failed'));
+          }, 'image/png');
+        };
+        img.onerror = () => reject(new Error('Image load failed'));
+        img.src = reader.result;
+      };
+      reader.onerror = () => reject(new Error('File read failed'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function imageToPDF(file) {
+    await init();
+    const pngBuffer = await fileToPngBuffer(file);
+    const pdfDoc = await pdfLib.PDFDocument.create();
+    const image = await pdfDoc.embedPng(pngBuffer);
+    const page = pdfDoc.addPage([image.width, image.height]);
+    page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+    return await pdfDoc.save();
+  }
+
   async function imagesToPDF(files) {
     await init();
     const pdfDoc = await pdfLib.PDFDocument.create();
     for (let i = 0; i < files.length; i++) {
-      const f = files[i];
-      let image;
-      if (f.type === 'image/png' || f.name.match(/\.png$/i)) {
-        image = await pdfDoc.embedPng(await f.arrayBuffer());
-      } else if (f.name.match(/\.svg$/i)) {
-        image = await pdfDoc.embedPng(await svgToPngBuffer(f));
-      } else {
-        image = await pdfDoc.embedJpg(await f.arrayBuffer());
-      }
+      const pngBuffer = await fileToPngBuffer(files[i]);
+      const image = await pdfDoc.embedPng(pngBuffer);
       const page = pdfDoc.addPage([image.width, image.height]);
       page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
     }
