@@ -240,6 +240,7 @@
     setupScrollHeader();
     setupLangToggle();
     setupFaq();
+    setupToolSelection();
     setupToolLinks();
     setupThemeToggle();
     selectTool(tools[0].id);
