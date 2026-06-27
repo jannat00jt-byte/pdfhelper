@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - PDF Tools</title>
+<meta name="description" content="Contactez l'équipe PDF Tools. Posez vos questions, signalez un bug ou faites une suggestion concernant nos outils de conversion PDF en ligne gratuits.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.pdftools.com/contact.html">
+<link rel="alternate" hreflang="fr" href="https://www.pdftools.com/contact.html">
+<link rel="alternate" hreflang="en" href="https://www.pdftools.com/en/contact.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+<meta name="theme-color" content="#2563eb">
+</head>
+<body>
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="/pdf-tools/" class="logo"><span class="logo-icon">PDF</span><span>PDF Tools</span></a>
+    <nav class="nav" id="nav">
+      <a href="/pdf-tools/" class="nav-link">Accueil</a>
+      <a href="/pdf-tools/#tools" class="nav-link">Outils</a>
+      <a href="/pdf-tools/#faq" class="nav-link">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre">🌙</button>
+      <a href="en/contact.html" class="lang-toggle" hreflang="en"><span>🌐</span><span>English</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main class="page-section">
+  <div class="container">
+    <h1>Contactez-nous</h1>
+    <p class="meta">Une question, une suggestion ou un problème ? Nous sommes là pour vous aider.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <h3>Email</h3>
+        <p><a href="mailto:contact@pdftools.com">contact@pdftools.com</a></p>
+        <p style="font-size:.85rem;color:var(--text-muted)">Réponse sous 24-48h</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <h3>Formulaire en ligne</h3>
+        <p>Utilisez le formulaire ci-dessous</p>
+        <p style="font-size:.85rem;color:var(--text-muted)">Réponse rapide garantie</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon">❓</div>
+        <h3>FAQ</h3>
+        <p>Consultez notre <a href="/pdf-tools/#faq">page FAQ</a></p>
+        <p style="font-size:.85rem;color:var(--text-muted)">Réponse immédiate à vos questions</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:48px">Envoyez-nous un message</h2>
+    <p style="margin-bottom:24px">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+
+    <form id="contactForm" style="max-width:640px;display:flex;flex-direction:column;gap:16px" onsubmit="return handleContact(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <label for="name" style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:.9rem">Nom complet</label>
+          <input type="text" id="name" required style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);font-size:.95rem;transition:border var(--transition)" placeholder="Votre nom">
+        </div>
+        <div>
+          <label for="email" style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:.9rem">Email</label>
+          <input type="email" id="email" required style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);font-size:.95rem;transition:border var(--transition)" placeholder="votre@email.com">
+        </div>
+      </div>
+      <div>
+        <label for="subject" style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:.9rem">Sujet</label>
+        <select id="subject" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);font-size:.95rem;transition:border var(--transition)">
+          <option>Question générale</option>
+          <option>Problème technique</option>
+          <option>Suggestion d'amélioration</option>
+          <option>Signalement de bug</option>
+          <option>Partenariat</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div>
+        <label for="message" style="display:block;font-weight:600;color:var(--text);margin-bottom:6px;font-size:.9rem">Message</label>
+        <textarea id="message" rows="6" required style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);font-size:.95rem;resize:vertical;transition:border var(--transition);font-family:var(--font)" placeholder="Décrivez votre demande..."></textarea>
+      </div>
+      <button type="submit" style="padding:14px 36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:var(--transition);width:fit-content">Envoyer le message ✉️</button>
+    </form>
+
+    <div id="contactSuccess" style="display:none;margin-top:24px;padding:24px;background:var(--success-bg);border:1px solid #a7f3d0;border-radius:var(--radius);text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">✅</div>
+      <h3 style="color:var(--success);margin-bottom:8px">Message envoyé avec succès !</h3>
+      <p style="color:var(--text-muted)">Nous vous répondrons dans les plus brefs délais. Merci de nous avoir contactés.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><a href="/pdf-tools/" class="logo"><span class="logo-icon">PDF</span><span style="color:white">PDF Tools</span></a><p>Solutions de conversion PDF en ligne, rapides et sécurisées.</p></div>
+      <div class="footer-col"><h4>Liens rapides</h4><ul><li><a href="/pdf-tools/">Accueil</a></li><li><a href="/pdf-tools/#tools">Outils</a></li><li><a href="/pdf-tools/#faq">FAQ</a></li><li><a href="privacy.html">Politique de confidentialité</a></li><li><a href="terms.html">Conditions d'utilisation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Outils</h4><ul><li><a href="/pdf-tools/#tools">Fusionner PDF</a></li><li><a href="/pdf-tools/#tools">JPG en PDF</a></li><li><a href="/pdf-tools/#tools">PNG en PDF</a></li><li><a href="/pdf-tools/#tools">TIFF en PDF</a></li><li><a href="/pdf-tools/#tools">SVG en PDF</a></li></ul></div>
+      <div class="footer-col"><h4>Informations légales</h4><ul><li><a href="privacy.html">Politique de confidentialité</a></li><li><a href="terms.html">Conditions d'utilisation</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 PDF Tools. Tous droits réservés. <a href="https://www.effectivecpmnetwork.com/sdwu3t1mf9?key=c0e7a5cf0e9e4ff61b2192891c7c4a36" rel="nofollow sponsored" target="_blank" style="color:var(--gray-500);font-size:.75rem;margin-left:16px">Outils recommandés</a></p></div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="https://pl30098201.effectivecpmnetwork.com/7f/b7/51/7fb751e43693df41c4545d5466a4310a.js"></script>
+<script>
+function handleContact(e) {
+  e.preventDefault();
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('contactSuccess').style.display = 'block';
+  return false;
+}
+</script>
+</body>
+</html>

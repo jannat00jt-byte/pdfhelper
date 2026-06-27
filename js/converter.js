@@ -15,7 +15,7 @@ const PDFConverter = (() => {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js';
       script.onload = () => { pdfLib = PDFLib; resolve(); };
-      script.onerror = reject;
+      script.onerror = () => reject(new Error('Failed to load pdf-lib'));
       document.head.appendChild(script);
     });
   }
@@ -26,33 +26,26 @@ const PDFConverter = (() => {
     for (let i = 0; i < files.length; i++) {
       const arrayBuffer = await files[i].arrayBuffer();
       const pdf = await pdfLib.PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
-      const pageIndices = pdf.getPageIndices();
-      const pages = await mergedPdf.copyPages(pdf, pageIndices);
+      const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
       pages.forEach(page => mergedPdf.addPage(page));
     }
-    const pdfBytes = await mergedPdf.save();
-    return pdfBytes;
+    return await mergedPdf.save();
   }
 
   async function imageToPDF(file) {
     await init();
-    const arrayBuffer = await file.arrayBuffer();
     const pdfDoc = await pdfLib.PDFDocument.create();
     let image;
-
     if (file.type === 'image/png' || file.name.match(/\.png$/i)) {
-      image = await pdfDoc.embedPng(arrayBuffer);
-    } else if (file.type === 'image/svg+xml' || file.name.match(/\.svg$/i)) {
-      const pngBuffer = await svgToPngBuffer(file);
-      image = await pdfDoc.embedPng(pngBuffer);
+      image = await pdfDoc.embedPng(await file.arrayBuffer());
+    } else if (file.name.match(/\.svg$/i)) {
+      image = await pdfDoc.embedPng(await svgToPngBuffer(file));
     } else {
-      image = await pdfDoc.embedJpg(arrayBuffer);
+      image = await pdfDoc.embedJpg(await file.arrayBuffer());
     }
-
     const page = pdfDoc.addPage([image.width, image.height]);
     page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
-    const pdfBytes = await pdfDoc.save();
-    return pdfBytes;
+    return await pdfDoc.save();
   }
 
   async function svgToPngBuffer(file) {
@@ -72,11 +65,7 @@ const PDFConverter = (() => {
         ctx.drawImage(img, 0, 0);
         canvas.toBlob(b => {
           URL.revokeObjectURL(url);
-          if (b) {
-            b.arrayBuffer().then(resolve).catch(reject);
-          } else {
-            reject(new Error('Canvas empty'));
-          }
+          b ? b.arrayBuffer().then(resolve).catch(reject) : reject(new Error('Canvas empty'));
         }, 'image/png');
       };
       img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('SVG load failed')); };
@@ -88,35 +77,26 @@ const PDFConverter = (() => {
     await init();
     const pdfDoc = await pdfLib.PDFDocument.create();
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const arrayBuffer = await file.arrayBuffer();
+      const f = files[i];
       let image;
-      if (file.type === 'image/png' || file.name.match(/\.png$/i)) {
-        image = await pdfDoc.embedPng(arrayBuffer);
-      } else if (file.name.match(/\.svg$/i)) {
-        const pngBuffer = await svgToPngBuffer(file);
-        image = await pdfDoc.embedPng(pngBuffer);
+      if (f.type === 'image/png' || f.name.match(/\.png$/i)) {
+        image = await pdfDoc.embedPng(await f.arrayBuffer());
+      } else if (f.name.match(/\.svg$/i)) {
+        image = await pdfDoc.embedPng(await svgToPngBuffer(f));
       } else {
-        image = await pdfDoc.embedJpg(arrayBuffer);
+        image = await pdfDoc.embedJpg(await f.arrayBuffer());
       }
       const page = pdfDoc.addPage([image.width, image.height]);
       page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
     }
-    const pdfBytes = await pdfDoc.save();
-    return pdfBytes;
+    return await pdfDoc.save();
   }
 
   async function convert(files, mode) {
     switch (mode) {
-      case 'combine':
-        return await combinePDFs(files);
-      case 'images':
-        if (files.length === 1) {
-          return await imageToPDF(files[0]);
-        }
-        return await imagesToPDF(files);
-      default:
-        throw new Error('Unknown mode');
+      case 'combine': return await combinePDFs(files);
+      case 'images': return files.length === 1 ? await imageToPDF(files[0]) : await imagesToPDF(files);
+      default: throw new Error('Unknown mode');
     }
   }
 
