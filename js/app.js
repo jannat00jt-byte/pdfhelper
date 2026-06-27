@@ -7,14 +7,14 @@
   'use strict';
 
   const tools = [
-    { id: 'combine', icon: '📄', title: { fr: 'Fusionner PDF', en: 'Merge PDF' }, desc: { fr: 'Combinez plusieurs PDF en un seul fichier', en: 'Combine multiple PDFs into one' }, accept: '.pdf', multiple: true, mode: 'combine', format: 'PDF' },
-    { id: 'jpg-to-pdf', icon: '🖼️', title: { fr: 'JPG en PDF', en: 'JPG to PDF' }, desc: { fr: 'Convertissez vos images JPG en PDF', en: 'Convert JPG images to PDF' }, accept: '.jpg,.jpeg,.png,.tiff,.tif,.svg', multiple: true, mode: 'images', format: 'JPG' },
-    { id: 'png-to-pdf', icon: '🖼️', title: { fr: 'PNG en PDF', en: 'PNG to PDF' }, desc: { fr: 'Convertissez vos images PNG en PDF', en: 'Convert PNG images to PDF' }, accept: '.png,.jpg,.jpeg,.tiff,.tif,.svg', multiple: true, mode: 'images', format: 'PNG' },
-    { id: 'tiff-to-pdf', icon: '📷', title: { fr: 'TIFF en PDF', en: 'TIFF to PDF' }, desc: { fr: 'Convertissez vos fichiers TIFF en PDF', en: 'Convert TIFF files to PDF' }, accept: '.tiff,.tif,.jpg,.jpeg,.png,.svg', multiple: true, mode: 'images', format: 'TIFF' },
-    { id: 'svg-to-pdf', icon: '🎨', title: { fr: 'SVG en PDF', en: 'SVG to PDF' }, desc: { fr: 'Convertissez vos fichiers SVG en PDF', en: 'Convert SVG files to PDF' }, accept: '.svg,.png,.jpg,.jpeg,.tiff,.tif', multiple: true, mode: 'images', format: 'SVG' }
+    { id: 'combine', icon: '📄', title: { fr: 'Fusionner PDF', en: 'Merge PDF', es: 'Fusionar PDF' }, desc: { fr: 'Combinez plusieurs PDF en un seul fichier', en: 'Combine multiple PDFs into one', es: 'Combine varios PDF en un solo archivo' }, accept: '.pdf', multiple: true, mode: 'combine', format: 'PDF' },
+    { id: 'jpg-to-pdf', icon: '🖼️', title: { fr: 'JPG en PDF', en: 'JPG to PDF', es: 'JPG a PDF' }, desc: { fr: 'Convertissez vos images JPG en PDF', en: 'Convert JPG images to PDF', es: 'Convierta sus imágenes JPG a PDF' }, accept: '.jpg,.jpeg,.png,.tiff,.tif,.svg', multiple: true, mode: 'images', format: 'JPG' },
+    { id: 'png-to-pdf', icon: '🖼️', title: { fr: 'PNG en PDF', en: 'PNG to PDF', es: 'PNG a PDF' }, desc: { fr: 'Convertissez vos images PNG en PDF', en: 'Convert PNG images to PDF', es: 'Convierta sus imágenes PNG a PDF' }, accept: '.png,.jpg,.jpeg,.tiff,.tif,.svg', multiple: true, mode: 'images', format: 'PNG' },
+    { id: 'tiff-to-pdf', icon: '📷', title: { fr: 'TIFF en PDF', en: 'TIFF to PDF', es: 'TIFF a PDF' }, desc: { fr: 'Convertissez vos fichiers TIFF en PDF', en: 'Convert TIFF files to PDF', es: 'Convierta sus archivos TIFF a PDF' }, accept: '.tiff,.tif,.jpg,.jpeg,.png,.svg', multiple: true, mode: 'images', format: 'TIFF' },
+    { id: 'svg-to-pdf', icon: '🎨', title: { fr: 'SVG en PDF', en: 'SVG to PDF', es: 'SVG a PDF' }, desc: { fr: 'Convertissez vos fichiers SVG en PDF', en: 'Convert SVG files to PDF', es: 'Convierta sus archivos SVG a PDF' }, accept: '.svg,.png,.jpg,.jpeg,.tiff,.tif', multiple: true, mode: 'images', format: 'SVG' }
   ];
 
-  let currentLang = document.documentElement.lang === 'en' ? 'en' : 'fr';
+  let currentLang = document.documentElement.lang === 'en' ? 'en' : document.documentElement.lang === 'es' ? 'es' : 'fr';
   let currentTool = tools[0];
   let selectedFiles = [];
   let isConverting = false;
@@ -91,6 +91,60 @@
       seoP4: 'Convertissez vos images JPG, PNG, TIFF et SVG en PDF avec une qualité optimale. Chaque image est convertie en une page PDF distincte, conservant la résolution et les couleurs originales.',
       dark: 'Mode sombre', light: 'Mode clair'
     },
+    es: {
+      siteName: 'PDFHelper Tool', tagline: 'Convierta y fusione sus documentos PDF en línea',
+      seoTitle: 'Convierta sus archivos a PDF gratis en línea',
+      seoDesc: 'Convierta y fusione sus PDF en línea gratis. Herramientas: fusionar PDF, JPG a PDF, PNG a PDF, TIFF a PDF, SVG a PDF. 100% seguro, sin registro.',
+      heroTitle: 'Convierta sus archivos a <span class="highlight">PDF</span>',
+      heroSub: ' gratis en línea',
+      heroDesc: 'Fusione PDF, convierta JPG, PNG, TIFF y SVG a PDF. 100% gratis, seguro y directamente desde su navegador.',
+      heroStat1: '<strong>50K+</strong><span>Conversiones</span>',
+      heroStat2: '<strong>100%</strong><span>Seguro</span>',
+      heroStat3: '<strong>Gratis</strong><span>Sin registro</span>',
+      workspaceTitle: 'Espacio de trabajo',
+      infoSecure: '100% seguro - sus archivos permanecen en su dispositivo',
+      dropzoneTitle: 'Suelte sus archivos aquí',
+      dropzoneDesc: 'o haga clic para examinar',
+      browse: 'Examinar', convert: 'Convertir a PDF', converting: 'Convirtiendo...',
+      reset: 'Restablecer',
+      resultTitle: '¡Conversión exitosa!',
+      resultDesc: 'Su archivo PDF está listo para descargar.',
+      download: 'Descargar PDF',
+      howTitle: 'Cómo <span class="highlight">funciona</span>',
+      howDesc: 'Convierta sus archivos a PDF en 3 sencillos pasos',
+      step1Title: 'Seleccione una herramienta', step1Desc: 'Elija la herramienta adecuada para su necesidad entre nuestras 5 opciones.',
+      step2Title: 'Añada sus archivos', step2Desc: 'Suelte sus archivos o haga clic para seleccionarlos.',
+      step3Title: 'Convierta y descargue', step3Desc: 'Obtenga su PDF en segundos, directamente en su navegador.',
+      featuresTitle: 'Por qué elegir <span class="highlight">PDFHelper Tool</span>',
+      feat1Title: '100% Gratis', feat1Desc: 'Todas nuestras herramientas son completamente gratuitas, sin límite de archivos ni de uso.',
+      feat2Title: 'Máxima seguridad', feat2Desc: 'Sus archivos se procesan localmente en su navegador. Nada se envía a nuestros servidores.',
+      feat3Title: 'Sin registro', feat3Desc: 'No necesita crear una cuenta. Use nuestras herramientas de inmediato.',
+      feat4Title: 'Multi-formato', feat4Desc: 'Compatible con PDF, JPG, PNG, TIFF y SVG. Convierta desde y hacia múltiples formatos.',
+      feat5Title: 'Velocidad', feat5Desc: 'Conversión instantánea directamente en su navegador. Resultados en segundos.',
+      feat6Title: 'Sin límites', feat6Desc: 'Convierta tantos archivos como desee, sin límite de tamaño ni de cantidad.',
+      faqTitle: 'Preguntas frecuentes',
+      faq1q: '¿Puedo fusionar varios PDF en un solo archivo?',
+      faq1a: '¡Sí, absolutamente! Seleccione la herramienta "Fusionar PDF", añada todos los archivos PDF que desee combinar, luego haga clic en "Convertir a PDF". Todos sus archivos se fusionarán en un solo documento PDF.',
+      faq2q: '¿Están seguros mis archivos?',
+      faq2a: 'Totalmente. Sus archivos se procesan localmente en su navegador. Ningún dato se envía a ningún servidor.',
+      faq3q: '¿Hay algún límite de tamaño o cantidad de archivos?',
+      faq3a: 'No, no hay límites. Puede convertir tantos archivos como desee, sin importar su tamaño.',
+      faq4q: '¿Puedo convertir imágenes a PDF?',
+      faq4a: 'Sí, puede convertir JPG, PNG, TIFF y SVG a PDF.',
+      faq5q: '¿La herramienta es realmente gratuita?',
+      faq5a: 'Sí, 100% gratuita. Sin pago, sin registro, sin límites.',
+      footerDesc: 'Soluciones rápidas y seguras de conversión de PDF en línea. No se requiere registro.',
+      lang: 'Français', noFiles: 'Ningún archivo seleccionado', filesSelected: 'archivo(s) seleccionado(s)',
+      errorTitle: 'Error de conversión', errorDesc: 'Ocurrió un error durante la conversión. Por favor, intente de nuevo.',
+      seoH2: 'Convierta todos sus documentos a PDF',
+      seoP1: 'PDFHelper Tool es su solución completa para la conversión y fusión de documentos PDF. Ya sea que necesite fusionar varios PDF en un solo archivo o convertir imágenes JPG, PNG, TIFF o SVG a PDF, nuestra herramienta en línea gratuita le ofrece una solución rápida y confiable.',
+      seoP2: 'A diferencia de otros servicios, PDFHelper Tool procesa todos sus archivos directamente en su navegador. Sus documentos permanecen confidenciales y nunca se cargan en un servidor externo.',
+      seoH3: 'Fusión profesional de PDF',
+      seoP3: 'Nuestra herramienta de fusión PDF le permite combinar varios documentos en un solo archivo PDF. Ideal para consolidar contratos, informes, presentaciones o cualquier documento profesional.',
+      seoH4: 'Conversión de imágenes a PDF de alta calidad',
+      seoP4: 'Convierta sus imágenes JPG, PNG, TIFF y SVG a PDF con calidad óptima. Cada imagen se convierte en una página PDF independiente, conservando la resolución y los colores originales.',
+      dark: 'Modo oscuro', light: 'Modo claro'
+    },
     en: {
       siteName: 'PDFHelper Tool', tagline: 'Convert and merge your PDF documents online',
       seoTitle: 'Convert your files to PDF for free online',
@@ -125,7 +179,7 @@
       faq4q: 'Can I convert images to PDF?', faq4a: 'Yes, you can convert JPG, PNG, TIFF and SVG to PDF.',
       faq5q: 'Is the tool really free?', faq5a: 'Yes, 100% free. No payment, no registration, no limits.',
       footerDesc: 'Fast and secure online PDF conversion solutions. No registration required.',
-      lang: 'Français', noFiles: 'No files selected', filesSelected: 'file(s) selected',
+      lang: 'Español', noFiles: 'No files selected', filesSelected: 'file(s) selected',
       errorTitle: 'Conversion error', errorDesc: 'An error occurred during conversion. Please try again.',
       seoH2: 'Convert all your documents to PDF',
       seoP1: 'PDFHelper Tool is your complete solution for PDF conversion and merging. Whether you need to merge multiple PDFs into one file or convert JPG, PNG, TIFF or SVG images to PDF, our free online tool provides a fast and reliable solution.',
@@ -475,7 +529,9 @@
 
   function setupLangToggle() {
     el.langToggle.addEventListener('click', () => {
-      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      const order = ['fr', 'en', 'es'];
+      const idx = order.indexOf(currentLang);
+      currentLang = order[(idx + 1) % order.length];
       updateUI();
     });
   }
